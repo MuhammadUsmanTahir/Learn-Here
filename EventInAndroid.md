@@ -165,3 +165,110 @@ public class MainActivity extends AppCompatActivity
     <!-- More GUI components go here  -->
 
 </LinearLayout>
+
+# MainActivity.java
+
+package com.example.admin.myapplication;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+public class MainActivity extends AppCompatActivity
+{
+    ToggleButton tb;
+    TextView tv;
+    Button btn;
+    CheckBox chkbox;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // GUI controls objects are type casting according their
+
+
+        tb = (ToggleButton) findViewById(R.id.btnOnOff);
+        tv = (TextView) findViewById(R.id.tvgui);
+        tb.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                tv.setText(tb.getText().toString());
+            }
+
+
+        });
+
+        chkbox = (CheckBox) findViewById(R.id.ichkremember);
+        btn =(Button) findViewById(R.id.btnCheck);
+
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View i)
+            {
+                if(chkbox.isChecked())
+                {
+                    Toast.makeText(getApplicationContext(),"Checked Now",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Unchecked Now",Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
+
+
+
+
+
+
+    }
+
+
+}
+
+# main_activity.xml
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- More GUI components go here  -->
+
+    <ToggleButton
+        android:id="@+id/btnOnOff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton" />
+
+    <TextView
+        android:id="@+id/tvgui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <CheckBox
+        android:id="@+id/ichkremember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remember Me" />
+
+    <Button
+        android:id="@+id/btnCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check" />
+</LinearLayout>
