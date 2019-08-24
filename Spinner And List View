@@ -1,0 +1,105 @@
+MainActivity.java
+
+package com.example.admin.myapplication;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity
+{
+
+    Spinner SP;
+    ListView Lv;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        SP = (Spinner)findViewById(R.id.spinner);
+        Lv = (ListView) findViewById(R.id.lst);
+        List<String> obj = new ArrayList<String>();
+
+        obj.add("A");
+        obj.add("B");
+        obj.add("C");
+        obj.add("D");
+        obj.add("F");
+
+
+        String[] ar = {"Web Development in PHP","Android Development",".Net Development"};
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,obj);
+        ad.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        SP.setAdapter(ad);
+
+
+
+        ArrayAdapter<String> ads = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,ar);
+        ads.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        Lv.setAdapter(ads);
+
+
+
+        Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String po = (String)Lv.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),po,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+//        btn =(Button) findViewById(R.id.btnCheck);
+//
+//        btn.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View i)
+//            {
+//                if(chkbox.isChecked())
+//                {
+//                    Toast.makeText(getApplicationContext(),"Checked Now",Toast.LENGTH_LONG).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(getApplicationContext(),"Unchecked Now",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+    }
+}
+
+
+activity_main.xml
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- More GUI components go here  -->
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/lst"
+        android:layout_width="wrap_content"
+        android:layout_height="218dp" />
+</LinearLayout>
